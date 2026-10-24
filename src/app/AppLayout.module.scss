@@ -1,0 +1,47 @@
+@use '@/styles/tokens' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.banner {
+  background: #fef3c7;
+  color: #78350f;
+  padding: $space-2 $space-4;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #fcd34d;
+}
+
+.shell {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-4;
+  background: $color-surface;
+  border-right: 1px solid $color-border;
+
+  a {
+    padding: $space-2 $space-3;
+    border-radius: $radius;
+    color: $color-text;
+    text-decoration: none;
+
+    &.active {
+      background: $color-accent;
+      color: $color-on-accent;
+    }
+  }
+}
+
+.main {
+  padding: $space-5;
+  min-width: 0;
+}

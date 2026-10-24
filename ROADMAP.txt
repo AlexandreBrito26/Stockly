@@ -1,0 +1,126 @@
+STOCKLY - ROADMAP DE CONSTRUÇÃO
+================================
+
+Legenda: [ ] pendente   [~] em andamento   [x] concluído
+
+FASE 0 - Base do projeto
+------------------------
+[x] Estrutura em camadas (domain, infra, store, features, app)
+[x] Vite + React + TypeScript + SCSS configurados
+[x] Modelo de dinheiro em centavos (Cents)
+[x] Contratos de repositório (ports.ts)
+[x] Esqueleto do banco Dexie
+[x] Testes de regras de negócio (totais, troco, estoque)
+[x] npm install, typecheck, lint, testes e build sem erros
+[x] ESLint configurado e CI no GitHub Actions (typecheck, lint, testes, build)
+
+FASE 1 - Catálogo e estoque
+---------------------------
+[x] Cadastro de produto pai (nome, categoria, NCM)
+[x] Geração de variações cor × tamanho com SKU automático
+[ ] Tela de listagem com tabela simples; filtros e TanStack Table ficam para depois
+[ ] Edição de preço e custo por variação (pendente)
+[x] Entrada de estoque (compra) gerando movimentos
+[x] Ajuste manual de estoque com motivo obrigatório
+[x] Tela de saldo por variação, derivado dos movimentos
+[x] Alerta de estoque baixo
+[x] Testes: geração de SKU, saldo, ajustes
+
+FASE 2 - Caixa (PDV)
+--------------------
+[x] Busca de produto por SKU, EAN ou nome
+[x] Leitor de código de barras por USB (teclado)
+[ ] Leitura por câmera (html5-qrcode ou @zxing/browser) - pendente, precisa de teste em celular
+[x] Carrinho com quantidade, remoção e desconto por item
+[x] Validação de estoque antes de adicionar ao carrinho
+[x] Formas de pagamento: dinheiro, pix, débito, crédito
+[x] Pagamento misto (mais de uma forma por venda)
+[x] Cálculo de troco
+[x] Finalização da venda: baixa de estoque + gravação atômica
+[x] Cancelamento de venda com estorno de estoque (tela em Vendas, com confirmação)
+[x] Atalhos de teclado para operação rápida
+[x] Testes: fluxo completo de venda e cancelamento
+
+FASE 3 - Histórico e relatórios
+-------------------------------
+[x] Lista de vendas com filtro por data e status
+[x] Detalhe da venda com snapshot de itens
+[x] Relatório de vendas por período
+[x] Relatório de vendas por categoria e variação
+[x] Curva ABC de produtos
+[x] Exportação CSV
+
+FASE 4 - Fiscal simulado
+------------------------
+[x] Cadastro de perfil tributário por NCM (CFOP, CSOSN, alíquota)
+[x] Cálculo de ICMS por item na finalização
+[x] Geração de XML de NF-e simulado a partir da venda
+[x] Chave simulada gravada na venda
+[x] Tela de visualização e download do XML simulado
+[x] Aviso permanente de que o fiscal é simulado
+[x] Testes do cálculo de impostos
+
+FASE 5 - Qualidade e uso real
+-----------------------------
+[x] Backup e restauração do banco local (exportar/importar JSON, com validação e resumo antes de restaurar)
+[x] Validação de entradas com Zod (produto, movimento de estoque, perfil fiscal)
+[x] Tratamento de erros e mensagens em português
+[~] Modo offline: PWA com cache dos arquivos do app (build gera sw.js). Falta testar offline num navegador real
+[~] Responsividade para tablet e celular: tabelas com rolagem e layout empilhado abaixo de 900px. Falta testar em aparelho
+[x] Acessibilidade básica (teclado, foco, contraste)
+[x] Testes de componentes com Testing Library
+
+FASE 6 - Evolução (opcional)
+----------------------------
+[ ] Substituir Dexie por API via nova implementação de ports.ts
+[ ] Multiusuário e permissões por função (caixa, gerente)
+[ ] Múltiplas lojas
+[ ] Integração real com a SEFAZ (exige certificado digital e validação fiscal)
+
+ORDEM SUGERIDA
+--------------
+Fase 0 -> Fase 1 -> Fase 2 -> Fase 3 -> Fase 4 -> Fase 5 -> Fase 6
+
+Sem catálogo e estoque não há o que vender no caixa, e sem o caixa
+não há vendas para o fiscal e os relatórios. A Fase 4 pode começar
+antes se você quiser validar o fluxo fiscal cedo.
+
+MELHORIAS - RODADA 1 (DESEMPENHO)
+---------------------------------
+[x] Paginação da lista de vendas (50 por página, filtros no banco)
+[x] Consulta de vendas por período usando o índice createdAt
+[x] Relatórios carregam só o período escolhido (padrão: mês atual)
+[x] Sass com API moderna (sem avisos de depreciação no build)
+[x] npm audit fix sem --force (correções sem quebra)
+[ ] Pendente: vulnerabilidades que exigem --force (ver npm audit)
+[ ] Pendente: useCatalog carrega todos os movimentos; calcular saldo no banco
+[ ] Pendente: teste de ponta a ponta no navegador
+
+MELHORIAS - FILA (uma por vez, na ordem)
+----------------------------------------
+[x] 1. Saldo calculado no banco (tabela balances, atualizada na mesma transação; migração v3; backup reconstrói os saldos)
+[x] 2. Carregamento sob demanda das rotas (React.lazy; entrada caiu de ~403 KB para ~169 KB)
+[x] 3. Web Worker para relatórios (cálculos em worker dedicado; respostas antigas descartadas)
+[x] 4. Abertura e fechamento de caixa (abertura, sangria, suprimento, conferência com diferença; venda só com caixa aberto)
+[x] 5. Cupom não fiscal (impressão térmica 58/80 mm; após a venda e pelo detalhe; papel e nome da loja em Dados)
+[ ] 6. Devoluções e trocas
+[ ] 7. Leitor de código de barras por câmera
+[ ] 8. Descontos com regras (percentual, limite por operador, campanhas)
+[ ] 9. Edição de preço e custo
+[ ] 10. Filtros e ordenação na tabela de estoque (TanStack Table)
+[ ] 11. Importação de produtos por planilha
+[ ] 12. Etiquetas com código de barras
+[ ] 13. Inventário com contagem física
+[ ] 14. Painel inicial
+[ ] 15. Metas de faturamento
+[ ] 16. Comparativo entre períodos
+[ ] 17. Usuários e permissões (PIN para descontos e cancelamentos)
+[ ] 18. Lembrete de backup
+[ ] 19. Persistência do armazenamento (navigator.storage.persist)
+[ ] 20. Testes de ponta a ponta (Playwright)
+[ ] 21. Limite de erro por tela
+[ ] 22. Auditoria de acessibilidade com axe
+[ ] 23. Vulnerabilidades do npm (atualização com --force)
+[ ] 24. Tema claro e escuro
+[ ] 25. Base para outros idiomas
+[ ] 26. Sincronização com servidor (Fase 6)

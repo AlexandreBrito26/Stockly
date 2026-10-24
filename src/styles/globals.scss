@@ -1,0 +1,15 @@
+@use 'tokens' as *;
+
+:root {
+  font-family: system-ui, sans-serif;
+  color: $color-text;
+  background: $color-bg;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+
+:focus-visible {
+  outline: 2px solid $color-accent;
+  outline-offset: 2px;
+}

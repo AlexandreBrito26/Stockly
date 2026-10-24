@@ -1,0 +1,68 @@
+@use '@/styles/tokens' as *;
+
+.page { display: grid; grid-template-columns: 1fr 340px; gap: $space-4; align-items: start; }
+.main, .side { display: flex; flex-direction: column; gap: $space-4; min-width: 0; }
+
+.card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  padding: $space-4;
+}
+
+.search {
+  width: 100%;
+  padding: $space-3;
+  font-size: 1.1rem;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+}
+
+.hint { color: #6b6b66; font-size: 0.8rem; margin: $space-1 0 0; }
+.muted { color: #6b6b66; }
+.error { color: $color-danger; }
+.ok { color: $color-accent; }
+
+.results { list-style: none; padding: 0; margin: $space-3 0 0; }
+.results li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-2 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.table { width: 100%; border-collapse: collapse;
+  th, td { text-align: left; padding: $space-2; border-bottom: 1px solid $color-border; }
+  input { width: 90px; padding: $space-1; }
+}
+
+.totals { display: flex; flex-direction: column; gap: $space-1; font-size: 0.95rem; }
+.totalFinal { font-size: 1.4rem; font-weight: 700; }
+
+.row { display: flex; gap: $space-2; align-items: center; }
+.row input, .row select { flex: 1; padding: $space-2; border: 1px solid $color-border; border-radius: $radius; }
+
+button {
+  padding: $space-2 $space-3;
+  border: none;
+  border-radius: $radius;
+  background: $color-accent;
+  color: $color-on-accent;
+  cursor: pointer;
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+.ghost { background: transparent; color: $color-text; border: 1px solid $color-border; }
+.big { width: 100%; padding: $space-3; font-size: 1.05rem; margin-top: $space-2; }
+
+.payList { list-style: none; padding: 0; margin: $space-2 0; }
+.payList li { display: flex; justify-content: space-between; padding: $space-1 0; }
+
+@media (max-width: 900px) {
+  .page { grid-template-columns: 1fr; }
+}
+
+.scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}

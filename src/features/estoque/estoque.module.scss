@@ -1,0 +1,89 @@
+@use '@/styles/tokens' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  padding: $space-4;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: $space-3;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    font-size: 0.875rem;
+  }
+
+  input {
+    padding: $space-2;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+  }
+}
+
+.fieldError {
+  color: $color-danger;
+  font-size: 0.8rem;
+}
+
+.error {
+  color: $color-danger;
+}
+
+.actions {
+  display: flex;
+  gap: $space-2;
+  margin-top: $space-3;
+  grid-column: 1 / -1;
+
+  button {
+    padding: $space-2 $space-3;
+    border: none;
+    border-radius: $radius;
+    background: $color-accent;
+    color: $color-on-accent;
+    cursor: pointer;
+
+    &:disabled { opacity: 0.6; cursor: wait; }
+  }
+
+  .secondary {
+    background: transparent;
+    color: $color-text;
+    border: 1px solid $color-border;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    text-align: left;
+    padding: $space-2;
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.badgeWarn {
+  background: #fde68a;
+  padding: 2px $space-2;
+  border-radius: $radius;
+  font-size: 0.8rem;
+}
+
+.scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}

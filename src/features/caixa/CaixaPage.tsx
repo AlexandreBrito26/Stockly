@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { useCatalog } from '@/features/catalog/useCatalog';
 import { exactCodeMatch, findVariantsByQuery } from '@/domain/product/search';
 import type { Variant } from '@/domain/product/types';
@@ -150,7 +151,17 @@ export function CaixaPage() {
             </ul>
           )}
 
-          {message && <p className={message.type === 'ok' ? styles.ok : styles.error}>{message.text}</p>}
+          {message && (
+            <p className={message.type === 'ok' ? styles.ok : styles.error} role="status">
+              {message.text}
+              {message.text.includes('perfil fiscal') && (
+                <>
+                  {' '}
+                  <Link to="/fiscal" className={styles.link}>Cadastrar perfil fiscal</Link>
+                </>
+              )}
+            </p>
+          )}
           {lastSale && (
             <button
               type="button"

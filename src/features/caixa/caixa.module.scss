@@ -20,6 +20,7 @@
   background: $color-alt;
 }
 
+.link { color: $color-accent; font-weight: 600; }
 .hint { color: $color-muted; font-size: 0.82rem; margin: $space-2 0 0; }
 .muted { color: $color-muted; }
 .error { color: $color-danger; font-weight: 500; }
@@ -40,9 +41,11 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  th, td { text-align: left; padding: 10px $space-3; border-bottom: 1px solid $color-border; }
+  th, td { text-align: left; padding: 10px $space-2; border-bottom: 1px solid $color-border; }
   th { background: $color-alt; }
-  input { width: 90px; padding: 6px $space-2; }
+  td:first-child { overflow-wrap: anywhere; min-width: 110px; }
+  input { width: 68px; padding: 6px $space-2; }
+  button { padding: 6px 10px; font-size: 0.85rem; }
 }
 
 .totals {

@@ -29,6 +29,7 @@ export function CashControl({ session, inDrawer, onChange }: Props) {
     try {
       await fn();
       setMessage({ type: 'ok', text: ok });
+      window.setTimeout(() => setMessage(null), 3500);
       onChange();
     } catch (e) {
       setMessage({ type: 'erro', text: e instanceof Error ? e.message : 'Erro no caixa' });

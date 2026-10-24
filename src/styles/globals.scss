@@ -64,6 +64,25 @@ input, select, textarea {
   }
 }
 
+input[type='file'] {
+  max-width: 100%;
+  padding: 6px;
+  color: $color-muted;
+
+  &::file-selector-button {
+    font: inherit;
+    font-weight: 600;
+    margin-right: $space-3;
+    padding: 7px $space-3;
+    border: none;
+    border-radius: 8px;
+    background: $color-accent;
+    color: $color-on-accent;
+    cursor: pointer;
+  }
+  &::file-selector-button:hover { background: $color-accent-hover; }
+}
+
 label { color: $color-muted; font-weight: 500; }
 
 table { font-size: 0.94rem; }

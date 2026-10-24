@@ -1,6 +1,6 @@
 @use '@/styles/tokens' as *;
 
-.page { display: grid; grid-template-columns: 1fr 360px; gap: $space-5; align-items: start; }
+.page { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: $space-5; align-items: start; }
 .main, .side { display: flex; flex-direction: column; gap: $space-5; min-width: 0; }
 .side { position: sticky; top: $space-5; }
 
@@ -65,7 +65,9 @@
 }
 
 .row { display: flex; gap: $space-2; align-items: center; }
-.row input, .row select { flex: 1; min-width: 0; }
+.row input { flex: 1; min-width: 0; }
+.row select { flex: 0 0 auto; }
+.row button { flex-shrink: 0; }
 
 .ghost {
   background: transparent;

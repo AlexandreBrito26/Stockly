@@ -3,7 +3,7 @@
 .shell {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 248px 1fr;
+  grid-template-columns: 248px minmax(0, 1fr);
 }
 
 .side {
@@ -80,7 +80,7 @@
 }
 
 @media (max-width: 860px) {
-  .shell { grid-template-columns: 1fr; }
+  .shell { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; }
   .side {
     position: static;
     height: auto;
@@ -96,6 +96,6 @@
       &.active::before { display: none; }
     }
   }
-  .banner { margin-top: 0; }
+  .banner { margin-top: 0; flex-direction: row; flex-wrap: wrap; gap: 0 $space-2; padding: 6px $space-3; }
   .main { padding: $space-4; }
 }

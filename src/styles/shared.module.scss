@@ -80,3 +80,29 @@
 }
 
 .scroll { overflow-x: auto; max-width: 100%; }
+
+.sessionHead {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-3;
+  h2 { margin: 0; }
+  p { margin: 0 0 0 auto; }
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $color-ok;
+  box-shadow: 0 0 0 4px rgba(23, 120, 79, 0.18);
+}
+.drawer {
+  margin-top: $space-3;
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: $color-accent;
+    padding: $space-1 0;
+    margin-bottom: $space-3;
+  }
+}

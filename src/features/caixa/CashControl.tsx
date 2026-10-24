@@ -89,52 +89,61 @@ export function CashControl({ session, inDrawer, onChange }: Props) {
 
   return (
     <section className={ui.card}>
-      <h2>Caixa aberto</h2>
-      <p>
-        Dinheiro esperado na gaveta: <strong>{formatBRL(inDrawer)}</strong>{' '}
-        <span className={ui.muted}>(abertura {formatBRL(session.openingCents)})</span>
-      </p>
-
-      <div className={ui.filters}>
-        <label>
-          Tipo
-          <select value={kind} onChange={(e) => setKind(e.target.value as 'sangria' | 'suprimento')}>
-            <option value="sangria">Sangria (retirada)</option>
-            <option value="suprimento">Suprimento (entrada)</option>
-          </select>
-        </label>
-        <label>
-          Valor (R$)
-          <input value={amount} onChange={(e) => setAmount(e.target.value)} inputMode="decimal" />
-        </label>
-        <label>
-          Motivo
-          <input value={note} onChange={(e) => setNote(e.target.value)} placeholder="Ex.: troco para o banco" />
-        </label>
-        <button type="button" className={ui.button} onClick={handleMovement} disabled={busy}>
-          Registrar
-        </button>
+      <div className={ui.sessionHead}>
+        <span className={ui.dot} aria-hidden="true" />
+        <h2>Caixa aberto</h2>
+        <p>
+          Na gaveta: <strong>{formatBRL(inDrawer)}</strong>{' '}
+          <span className={ui.muted}>(abertura {formatBRL(session.openingCents)})</span>
+        </p>
       </div>
 
-      {session.movements.length > 0 && (
-        <ul className={ui.muted}>
-          {session.movements.map((m) => (
-            <li key={m.id}>
-              {m.kind === 'sangria' ? 'Sangria' : 'Suprimento'} {formatBRL(m.amountCents)}: {m.note}
-            </li>
-          ))}
-        </ul>
-      )}
+      <details className={ui.drawer}>
+        <summary>Sangria, suprimento e fechamento</summary>
 
-      <div className={ui.filters}>
-        <label>
-          Dinheiro contado (R$)
-          <input value={counted} onChange={(e) => setCounted(e.target.value)} inputMode="decimal" />
-        </label>
-        <button type="button" className={`${ui.button} ${ui.danger}`} onClick={handleClose} disabled={busy}>
-          Fechar caixa
-        </button>
-      </div>
+        <div className={ui.filters}>
+          <label>
+            Tipo
+            <select value={kind} onChange={(e) => setKind(e.target.value as 'sangria' | 'suprimento')}>
+              <option value="sangria">Sangria (retirada)</option>
+              <option value="suprimento">Suprimento (entrada)</option>
+            </select>
+          </label>
+          <label>
+            Valor (R$)
+            <input value={amount} onChange={(e) => setAmount(e.target.value)} inputMode="decimal" />
+          </label>
+          <label>
+            Motivo
+            <input value={note} onChange={(e) => setNote(e.target.value)} placeholder="Ex.: troco para o banco" />
+          </label>
+          <button type="button" className={ui.button} onClick={handleMovement} disabled={busy}>
+            Registrar
+          </button>
+        </div>
+
+        {session.movements.length > 0 && (
+          <ul className={ui.muted}>
+            {session.movements.map((m) => (
+              <li key={m.id}>
+                {m.kind === 'sangria' ? 'Sangria' : 'Suprimento'} {formatBRL(m.amountCents)}: {m.note}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <hr />
+
+        <div className={ui.filters}>
+          <label>
+            Dinheiro contado (R$)
+            <input value={counted} onChange={(e) => setCounted(e.target.value)} inputMode="decimal" />
+          </label>
+          <button type="button" className={`${ui.button} ${ui.danger}`} onClick={handleClose} disabled={busy}>
+            Fechar caixa
+          </button>
+        </div>
+      </details>
 
       {message && <p className={message.type === 'ok' ? ui.ok : ui.error} role="status">{message.text}</p>}
     </section>

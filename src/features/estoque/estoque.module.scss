@@ -47,7 +47,7 @@
     background: transparent;
     color: $color-text;
     border-color: $color-border;
-    &:hover:not(:disabled) { background: $color-accent-soft; color: $color-accent-dark; }
+    &:hover:not(:disabled) { background: $color-accent-soft; color: $color-accent; }
   }
 }
 
@@ -55,7 +55,7 @@
   width: 100%;
   border-collapse: collapse;
 
-  th { background: #f8f9fd; }
+  th { background: $color-alt; }
   th, td {
     text-align: left;
     padding: 10px $space-3;
@@ -64,8 +64,8 @@
 }
 
 .badgeWarn {
-  background: #fdecc4;
-  color: #7a4f06;
+  background: var(--badge-b-bg);
+  color: var(--badge-b-fg);
   padding: 2px 10px;
   border-radius: 999px;
   font-weight: 600;

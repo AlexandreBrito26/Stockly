@@ -1,4 +1,5 @@
 @use 'tokens' as *;
+@use 'themes';
 
 :root {
   font-family: 'Hanken Grotesk Variable', system-ui, sans-serif;
@@ -40,7 +41,7 @@ button {
   cursor: pointer;
   transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
 
-  &:hover:not(:disabled) { background: $color-accent-dark; }
+  &:hover:not(:disabled) { background: $color-accent-hover; }
   &:active:not(:disabled) { transform: translateY(1px); }
   &:disabled { opacity: 0.45; cursor: not-allowed; }
 }
@@ -48,18 +49,18 @@ button {
 input, select, textarea {
   font: inherit;
   color: $color-text;
-  background: #fff;
+  background: $color-alt;
   padding: 9px $space-3;
   border: 1px solid $color-border;
   border-radius: $radius;
   transition: border-color 0.15s, box-shadow 0.15s;
 
-  &::placeholder { color: #9a9eb5; }
-  &:hover { border-color: #c9cee3; }
+  &::placeholder { color: var(--placeholder); }
+  &:hover { border-color: var(--border-hover); }
   &:focus {
     outline: none;
     border-color: $color-accent;
-    box-shadow: 0 0 0 3px rgba(42, 58, 156, 0.15);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
   }
 }
 

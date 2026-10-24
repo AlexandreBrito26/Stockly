@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { Logo } from './Logo';
+import { ThemeSwitcher } from './ThemeSwitcher';
 import styles from './AppLayout.module.scss';
 
 const icon = (d: ReactNode) => (
@@ -31,6 +32,7 @@ export function AppLayout() {
             </NavLink>
           ))}
         </nav>
+        <ThemeSwitcher />
         <div className={styles.banner} role="status">
           <strong>Ambiente fiscal simulado</strong>
           <span>Nenhuma nota é transmitida à SEFAZ.</span>

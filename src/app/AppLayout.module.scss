@@ -57,15 +57,14 @@
 }
 
 .banner {
-  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding: $space-3;
   border-radius: $radius;
-  background: rgba(242, 184, 75, 0.14);
-  border: 1px solid rgba(242, 184, 75, 0.35);
-  color: #f7d894;
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+  color: color-mix(in srgb, var(--gold) 60%, #fff);
   font-size: 0.8rem;
   line-height: 1.35;
 

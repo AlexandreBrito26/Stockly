@@ -5,8 +5,9 @@
 .card {
   background: $color-surface;
   border: 1px solid $color-border;
-  border-radius: $radius;
-  padding: $space-4;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  box-shadow: $shadow-card;
 }
 
 .filters {
@@ -16,58 +17,66 @@
   align-items: flex-end;
 
   label { display: flex; flex-direction: column; gap: $space-1; font-size: 0.875rem; }
-  input, select { padding: $space-2; border: 1px solid $color-border; border-radius: $radius; }
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
 
-  th, td { text-align: left; padding: $space-2; border-bottom: 1px solid $color-border; vertical-align: top; }
+  th, td { text-align: left; padding: 10px $space-3; border-bottom: 1px solid $color-border; vertical-align: top; }
+  th { background: #f8f9fd; }
+  th:first-child { border-top-left-radius: $radius; }
+  th:last-child { border-top-right-radius: $radius; }
   tbody tr.clickable { cursor: pointer; }
-  tbody tr.clickable:hover { background: #f1f1ee; }
-  tfoot td { font-weight: 600; }
+  tbody tr.clickable:hover { background: $color-accent-soft; }
+  tfoot td { font-weight: 700; border-bottom: none; }
 }
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: $space-3;
 }
-.stat strong { display: block; font-size: 1.3rem; }
-.stat span { color: #6b6b66; font-size: 0.85rem; }
-
-.button {
-  padding: $space-2 $space-3;
-  border: none;
+.stat {
+  padding: $space-4;
   border-radius: $radius;
-  background: $color-accent;
-  color: $color-on-accent;
-  cursor: pointer;
-  &:disabled { opacity: 0.5; cursor: not-allowed; }
+  background: $color-accent-soft;
 }
-.ghost { background: transparent; color: $color-text; border: 1px solid $color-border; }
-.danger { background: $color-danger; }
+.stat strong {
+  display: block;
+  font-family: $font-display;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: $color-accent-dark;
+  line-height: 1.2;
+}
+.stat span { color: $color-muted; font-size: 0.85rem; }
 
-.muted { color: #6b6b66; }
-.error { color: $color-danger; }
-.ok { color: $color-accent; }
-.badge { padding: 2px $space-2; border-radius: $radius; font-size: 0.8rem; background: #e5e7eb; }
-.badgeCancel { background: #fee2e2; color: $color-danger; }
-.badgeA { background: #bbf7d0; }
-.badgeB { background: #fde68a; }
+.button { /* usa o estilo base de button */ }
+.ghost {
+  background: transparent;
+  color: $color-text;
+  border-color: $color-border;
+  &:hover:not(:disabled) { background: $color-accent-soft; color: $color-accent-dark; }
+}
+.danger { background: $color-danger; &:hover:not(:disabled) { background: #8f1b11; } }
+
+.muted { color: $color-muted; }
+.error { color: $color-danger; font-weight: 500; }
+.ok { color: $color-ok; font-weight: 500; }
+.badge { padding: 2px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; background: #e8ebf3; color: #3b4160; }
+.badgeCancel { background: #fde4e1; color: $color-danger; }
+.badgeA { background: #d5f3e3; color: #0f5c3b; }
+.badgeB { background: #fdecc4; color: #7a4f06; }
 
 .xml {
-  background: #111827;
-  color: #e5e7eb;
-  padding: $space-3;
+  background: $color-accent-dark;
+  color: #dfe3f7;
+  padding: $space-4;
   border-radius: $radius;
   overflow-x: auto;
   font-size: 0.8rem;
   max-height: 360px;
 }
 
-.scroll {
-  overflow-x: auto;
-  max-width: 100%;
-}
+.scroll { overflow-x: auto; max-width: 100%; }

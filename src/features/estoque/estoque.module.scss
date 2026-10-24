@@ -9,8 +9,9 @@
 .card {
   background: $color-surface;
   border: 1px solid $color-border;
-  border-radius: $radius;
-  padding: $space-4;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  box-shadow: $shadow-card;
 }
 
 .form {
@@ -25,11 +26,6 @@
     font-size: 0.875rem;
   }
 
-  input {
-    padding: $space-2;
-    border: 1px solid $color-border;
-    border-radius: $radius;
-  }
 }
 
 .fieldError {
@@ -47,21 +43,11 @@
   margin-top: $space-3;
   grid-column: 1 / -1;
 
-  button {
-    padding: $space-2 $space-3;
-    border: none;
-    border-radius: $radius;
-    background: $color-accent;
-    color: $color-on-accent;
-    cursor: pointer;
-
-    &:disabled { opacity: 0.6; cursor: wait; }
-  }
-
   .secondary {
     background: transparent;
     color: $color-text;
-    border: 1px solid $color-border;
+    border-color: $color-border;
+    &:hover:not(:disabled) { background: $color-accent-soft; color: $color-accent-dark; }
   }
 }
 
@@ -69,17 +55,20 @@
   width: 100%;
   border-collapse: collapse;
 
+  th { background: #f8f9fd; }
   th, td {
     text-align: left;
-    padding: $space-2;
+    padding: 10px $space-3;
     border-bottom: 1px solid $color-border;
   }
 }
 
 .badgeWarn {
-  background: #fde68a;
-  padding: 2px $space-2;
-  border-radius: $radius;
+  background: #fdecc4;
+  color: #7a4f06;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-weight: 600;
   font-size: 0.8rem;
 }
 

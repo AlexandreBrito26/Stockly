@@ -171,8 +171,9 @@ export function CaixaPage() {
         <section className={styles.card}>
           <h2>Itens da venda</h2>
           <CartTable balances={balances} onError={(text) => setMessage({ type: 'erro', text })} />
-          <div className={styles.totals} style={{ marginTop: 12 }}>
-            <span>Total: <strong className={styles.totalFinal}>{formatBRL(total)}</strong></span>
+          <div className={styles.totals}>
+            <span className={styles.totalLabel}>Total da venda</span>
+            <strong className={styles.totalFinal}>{formatBRL(total)}</strong>
           </div>
         </section>
       </div>

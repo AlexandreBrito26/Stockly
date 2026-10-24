@@ -1,68 +1,86 @@
 @use '@/styles/tokens' as *;
 
-.page { display: grid; grid-template-columns: 1fr 340px; gap: $space-4; align-items: start; }
-.main, .side { display: flex; flex-direction: column; gap: $space-4; min-width: 0; }
+.page { display: grid; grid-template-columns: 1fr 360px; gap: $space-5; align-items: start; }
+.main, .side { display: flex; flex-direction: column; gap: $space-5; min-width: 0; }
+.side { position: sticky; top: $space-5; }
 
 .card {
   background: $color-surface;
   border: 1px solid $color-border;
-  border-radius: $radius;
-  padding: $space-4;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  box-shadow: $shadow-card;
 }
 
 .search {
   width: 100%;
-  padding: $space-3;
+  padding: 14px $space-4;
   font-size: 1.1rem;
-  border: 1px solid $color-border;
-  border-radius: $radius;
+  border-radius: 12px;
+  background: #f8f9fd;
 }
 
-.hint { color: #6b6b66; font-size: 0.8rem; margin: $space-1 0 0; }
-.muted { color: #6b6b66; }
-.error { color: $color-danger; }
-.ok { color: $color-accent; }
+.hint { color: $color-muted; font-size: 0.82rem; margin: $space-2 0 0; }
+.muted { color: $color-muted; }
+.error { color: $color-danger; font-weight: 500; }
+.ok { color: $color-ok; font-weight: 500; }
 
 .results { list-style: none; padding: 0; margin: $space-3 0 0; }
 .results li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $space-2 0;
+  gap: $space-3;
+  padding: 10px $space-2;
   border-bottom: 1px solid $color-border;
+  border-radius: $radius;
+  &:hover { background: $color-accent-soft; }
 }
 
-.table { width: 100%; border-collapse: collapse;
-  th, td { text-align: left; padding: $space-2; border-bottom: 1px solid $color-border; }
-  input { width: 90px; padding: $space-1; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  th, td { text-align: left; padding: 10px $space-3; border-bottom: 1px solid $color-border; }
+  th { background: #f8f9fd; }
+  input { width: 90px; padding: 6px $space-2; }
 }
 
-.totals { display: flex; flex-direction: column; gap: $space-1; font-size: 0.95rem; }
-.totalFinal { font-size: 1.4rem; font-weight: 700; }
+.totals {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: $space-4;
+  padding: $space-4 $space-5;
+  border-radius: $radius-lg;
+  background: $color-accent-dark;
+  color: #fff;
+}
+.totalLabel { color: rgba(255, 255, 255, 0.7); font-weight: 500; }
+.totalFinal {
+  font-family: $font-display;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
 
 .row { display: flex; gap: $space-2; align-items: center; }
-.row input, .row select { flex: 1; padding: $space-2; border: 1px solid $color-border; border-radius: $radius; }
+.row input, .row select { flex: 1; min-width: 0; }
 
-button {
-  padding: $space-2 $space-3;
-  border: none;
-  border-radius: $radius;
-  background: $color-accent;
-  color: $color-on-accent;
-  cursor: pointer;
-  &:disabled { opacity: 0.5; cursor: not-allowed; }
+.ghost {
+  background: transparent;
+  color: $color-text;
+  border-color: $color-border;
+  &:hover:not(:disabled) { background: $color-accent-soft; color: $color-accent-dark; }
 }
-.ghost { background: transparent; color: $color-text; border: 1px solid $color-border; }
-.big { width: 100%; padding: $space-3; font-size: 1.05rem; margin-top: $space-2; }
+.big { width: 100%; padding: 14px; font-size: 1.05rem; margin-top: $space-3; background: $color-ok; &:hover:not(:disabled) { background: #0f5c3b; } }
 
-.payList { list-style: none; padding: 0; margin: $space-2 0; }
-.payList li { display: flex; justify-content: space-between; padding: $space-1 0; }
+.payList { list-style: none; padding: 0; margin: $space-3 0; }
+.payList li { display: flex; justify-content: space-between; padding: $space-2 0; border-bottom: 1px dashed $color-border; }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .page { grid-template-columns: 1fr; }
+  .side { position: static; }
 }
 
-.scroll {
-  overflow-x: auto;
-  max-width: 100%;
-}
+.scroll { overflow-x: auto; max-width: 100%; }

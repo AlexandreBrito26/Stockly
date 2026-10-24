@@ -57,7 +57,7 @@ export function EstoquePage() {
                       {isLowStock(balance) ? (
                         <span className={styles.badgeWarn}>Baixo</span>
                       ) : (
-                        'OK'
+                        <span className={styles.badgeOk}>OK</span>
                       )}
                     </td>
                     <td>

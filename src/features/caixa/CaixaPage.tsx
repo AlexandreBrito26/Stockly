@@ -116,16 +116,22 @@ export function CaixaPage() {
     <div className={styles.page}>
       <div className={styles.main}>
         <section className={styles.card}>
-          <input
-            ref={searchRef}
-            autoFocus
-            className={styles.search}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleSearchKey}
-            placeholder="Escaneie, digite SKU, EAN ou nome (F2)"
-            aria-label="Buscar produto"
-          />
+          <div className={styles.searchWrap}>
+            <svg className={styles.searchIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" />
+            </svg>
+            <input
+              ref={searchRef}
+              autoFocus
+              className={styles.search}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleSearchKey}
+              placeholder="Escaneie, digite SKU, EAN ou nome (F2)"
+              aria-label="Buscar produto"
+            />
+          </div>
           <p className={styles.hint}>Enter adiciona. Leitor de código de barras funciona direto aqui.</p>
 
           {loading && <p className={styles.muted}>Carregando produtos…</p>}
@@ -137,10 +143,16 @@ export function CaixaPage() {
                 const balance = balances.get(v.id) ?? 0;
                 return (
                   <li key={v.id}>
-                    <span>
-                      {productMap.get(v.productId)?.name} · {v.size} · {v.color} · {formatBRL(v.priceCents)}{' '}
-                      <span className={styles.muted}>(saldo {balance})</span>
+                    <span className={styles.resultInfo}>
+                      <span className={styles.resultName}>{productMap.get(v.productId)?.name}</span>
+                      <span className={styles.resultMeta}>
+                        Tam. {v.size}, {v.color}, {v.sku}{' '}
+                        <span className={balance <= 2 ? styles.stockLow : undefined}>
+                          {balance <= 0 ? 'sem estoque' : `saldo ${balance}`}
+                        </span>
+                      </span>
                     </span>
+                    <span className={styles.resultPrice}>{formatBRL(v.priceCents)}</span>
                     <button type="button" onClick={() => { addVariant(v); setQuery(''); }} disabled={balance <= 0}>
                       Adicionar
                     </button>
@@ -169,11 +181,15 @@ export function CaixaPage() {
         </section>
 
         <section className={styles.card}>
-          <h2>Itens da venda</h2>
-          <CartTable balances={balances} onError={(text) => setMessage({ type: 'erro', text })} />
-          <div className={styles.totals} style={{ marginTop: 12 }}>
-            <span>Total: <strong className={styles.totalFinal}>{formatBRL(total)}</strong></span>
+          <div className={styles.cartHead}>
+            <h2>Itens da venda</h2>
+            {items.length > 0 && (
+              <span className={styles.muted}>
+                {items.reduce((n, i) => n + i.qty, 0)} {items.reduce((n, i) => n + i.qty, 0) === 1 ? 'peça' : 'peças'}
+              </span>
+            )}
           </div>
+          <CartTable balances={balances} onError={(text) => setMessage({ type: 'erro', text })} />
         </section>
       </div>
 

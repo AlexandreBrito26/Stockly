@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#1f5f4a"/><text x="256" y="350" font-family="system-ui, sans-serif" font-size="300" font-weight="700" text-anchor="middle" fill="#ffffff">S</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#232A5C"/>
+  <path fill="#FFFFFF" fill-rule="evenodd" stroke="#FFFFFF" stroke-width="16" stroke-linejoin="round"
+        d="M204 129H308L348 169V403H164V169Z M256 171m-20 0a20 20 0 1 0 40 0a20 20 0 1 0-40 0"/>
+  <circle cx="256" cy="171" r="25" fill="none" stroke="#E5446D" stroke-width="9"/>
+  <path d="M306 254C296 224 206 226 206 268C206 308 306 300 306 346C306 388 214 390 204 354"
+        fill="none" stroke="#232A5C" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

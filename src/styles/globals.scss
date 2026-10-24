@@ -1,15 +1,44 @@
 @use 'tokens' as *;
+@use 'mixins' as *;
 
 :root {
-  font-family: system-ui, sans-serif;
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.5;
   color: $color-text;
   background: $color-bg;
+  -webkit-font-smoothing: antialiased;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; }
+body { margin: 0; font-variant-numeric: tabular-nums; }
+
+h1, h2, h3 {
+  font-family: $font-display;
+  color: $color-ink-deep;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+h1 { font-size: 1.75rem; font-weight: 700; line-height: 1.15; }
+h2 { font-size: 1.125rem; font-weight: 650; line-height: 1.25; margin-bottom: $space-3; }
+p { margin: 0 0 $space-2; }
+strong { font-weight: 650; }
+
+button { @include btn-primary; }
+input, select, textarea { @include control; font-family: $font-body; }
+select { padding-right: $space-2; }
+input[type='checkbox'], input[type='radio'] { min-height: 0; accent-color: $color-ink; }
+input[type='file'] { padding: 6px $space-3; }
+
+label { color: $color-text; font-weight: 500; }
+table { @include table; }
+ul { padding-left: $space-5; }
 
 :focus-visible {
-  outline: 2px solid $color-accent;
+  outline: 2px solid $color-thread;
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
 }

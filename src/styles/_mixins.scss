@@ -1,0 +1,96 @@
+@use 'tokens' as *;
+
+@mixin btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  min-height: 40px;
+  padding: 0 $space-4;
+  border: 1px solid $color-ink;
+  border-radius: $radius;
+  background: $color-ink;
+  color: $color-on-accent;
+  font: 600 0.9375rem/1 $font-body;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.05s;
+
+  &:hover:not(:disabled) { background: $color-ink-soft; border-color: $color-ink-soft; }
+  &:active:not(:disabled) { transform: translateY(1px); }
+  &:disabled { opacity: 0.45; cursor: not-allowed; }
+}
+
+@mixin btn-ghost {
+  background: transparent;
+  color: $color-ink;
+  border: 1px solid $color-border-strong;
+
+  &:hover:not(:disabled) { background: $bg-hover; border-color: $color-ink; }
+}
+
+@mixin btn-danger {
+  background: $color-danger;
+  border-color: $color-danger;
+  color: #fff;
+
+  &:hover:not(:disabled) { background: #96251f; border-color: #96251f; }
+}
+
+@mixin control {
+  min-height: 40px;
+  padding: 0 $space-3;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius;
+  background: $color-surface;
+  color: $color-text;
+  font: 400 0.9375rem/1.2 $font-body;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  &:hover { border-color: $color-ink-soft; }
+  &:focus { outline: none; border-color: $color-ink; box-shadow: 0 0 0 3px rgba(35, 42, 92, 0.18); }
+  &::placeholder { color: #9aa0b8; }
+}
+
+@mixin card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  box-shadow: $shadow-card;
+}
+
+@mixin table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+
+  th {
+    text-align: left;
+    padding: $space-2 $space-3;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $color-muted;
+    border-bottom: 1px solid $color-border-strong;
+    white-space: nowrap;
+  }
+  td {
+    text-align: left;
+    padding: $space-3;
+    border-bottom: 1px solid $color-border;
+    vertical-align: middle;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: $bg-hover; }
+  input { min-height: 34px; padding: 0 $space-2; width: 84px; }
+}
+
+@mixin pill($bg: #e8eaf3, $fg: $color-ink) {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: $bg;
+  color: $fg;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}

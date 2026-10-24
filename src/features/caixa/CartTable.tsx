@@ -17,7 +17,12 @@ export function CartTable({ balances, onError }: Props) {
   const removeItem = useCartStore((s) => s.removeItem);
 
   if (items.length === 0) {
-    return <p className={styles.muted}>Carrinho vazio. Busque ou escaneie um produto.</p>;
+    return (
+      <div className={styles.empty}>
+        <strong>Nenhum item na venda</strong>
+        <p>Escaneie um código ou busque por SKU, EAN ou nome para começar.</p>
+      </div>
+    );
   }
 
   return (
@@ -79,7 +84,7 @@ export function CartTable({ balances, onError }: Props) {
             </td>
             <td>{formatBRL(lineTotal(i))}</td>
             <td>
-              <button type="button" className={styles.ghost} onClick={() => removeItem(i.variantId)}>
+              <button type="button" className={`${styles.ghost} ${styles.small}`} onClick={() => removeItem(i.variantId)}>
                 Remover
               </button>
             </td>

@@ -38,6 +38,14 @@ export function PaymentPanel({ total, payments, onChange, onFinalize, canFinaliz
 
   return (
     <div className={styles.card}>
+      <div className={styles.tag}>
+        <span className={styles.tagLabel}>Total da venda</span>
+        <strong className={styles.tagValue}>{formatBRL(total)}</strong>
+        <div className={styles.tagStitch}>
+          <span>Pago</span>
+          <span>{formatBRL(paid as Cents)}</span>
+        </div>
+      </div>
       <h2>Pagamento</h2>
       <div className={styles.row}>
         <select aria-label="Forma de pagamento" value={method} onChange={(e) => setMethod(e.target.value as PaymentMethod)}>
@@ -63,9 +71,14 @@ export function PaymentPanel({ total, payments, onChange, onFinalize, canFinaliz
           {payments.map((p, idx) => (
             <li key={idx}>
               <span>{METHODS.find((m) => m.value === p.method)?.label}</span>
-              <span>
+              <span className={styles.payRight}>
                 {formatBRL(p.amountCents)}{' '}
-                <button type="button" className={styles.ghost} onClick={() => onChange(payments.filter((_, i) => i !== idx))}>
+                <button
+                  type="button"
+                  className={`${styles.ghost} ${styles.iconBtn}`}
+                  aria-label={`Remover pagamento em ${METHODS.find((m) => m.value === p.method)?.label}`}
+                  onClick={() => onChange(payments.filter((_, i) => i !== idx))}
+                >
                   ×
                 </button>
               </span>

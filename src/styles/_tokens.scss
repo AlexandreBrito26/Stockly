@@ -1,15 +1,37 @@
-$color-bg: #f7f7f5;
+// Paleta "etiqueta": índigo de tinta, papel frio e um único rosa-fio de destaque.
+$color-ink: #232a5c;
+$color-ink-deep: #171c45;
+$color-ink-soft: #343c78;
+$color-bg: #f1f2f6;
 $color-surface: #ffffff;
-$color-border: #e3e3df;
-$color-text: #1d1d1b;
-$color-accent: #1f5f4a;
+$color-border: #dfe1ea;
+$color-border-strong: #c7cadb;
+$color-text: #1b1e33;
+$color-muted: #646a85;
+$color-thread: #e5446d;
+$color-thread-deep: #c92f58;
+
+$color-accent: $color-ink;
 $color-on-accent: #ffffff;
-$color-danger: #b42318;
+$color-danger: #b8322a;
+$color-ok: #17795a;
+
+$bg-ok: #dff3ea;
+$bg-warn: #fcefc9;
+$fg-warn: #7a5200;
+$bg-danger: #fbe3e1;
+$bg-hover: #f6f7fb;
+
+$font-display: 'Bricolage Grotesque Variable', 'Instrument Sans Variable', system-ui, sans-serif;
+$font-body: 'Instrument Sans Variable', system-ui, sans-serif;
 
 $space-1: 4px;
 $space-2: 8px;
 $space-3: 12px;
 $space-4: 16px;
 $space-5: 24px;
+$space-6: 32px;
 
-$radius: 6px;
+$radius: 10px;
+$radius-lg: 16px;
+$shadow-card: 0 1px 2px rgba(35, 42, 92, 0.05);
